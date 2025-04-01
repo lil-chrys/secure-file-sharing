@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import dbConnect from "@/lib/db";
 import User from "@/app/models/User";
+import { connectToDB } from "@/app/lib/db";
 export async function POST(req) {
   try {
-    await dbConnect(); // Connect to MongoDB
+    await connectToDB(); // Connect to MongoDB
     const { email, password } = await req.json();
 
     // Check if user exists
