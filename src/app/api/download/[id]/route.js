@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import {connectToDB} from "@/app/lib/db";
+import { connectToDB } from "@/app/lib/db";
 import File from "@/app/models/File";
 import { decryptFile } from "@/app/lib/encrypt";
 
@@ -28,12 +28,12 @@ export async function GET(req, { params }) {
     // Decrypt the file
     const decryptedBuffer = decryptFile(fileRecord.encryptedFile, fileRecord.iv, fileRecord.salt);
 
-    // Return the decrypted file as a response
+    // Return the decrypted file with the original filename and MIME type
     return new Response(decryptedBuffer, {
       status: 200,
       headers: {
-        "Content-Disposition": `attachment; filename="decrypted_file"`, // Adjust as needed
-        "Content-Type": "application/octet-stream",
+        "Content-Disposition": `attachment; filename="${fileRecord.originalFilename}"`,
+        "Content-Type": fileRecord.mimeType,
       },
     });
   } catch (error) {
