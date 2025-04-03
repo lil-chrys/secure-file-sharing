@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import { connectToDB } from "@/app/lib/db";
 import User from "@/app/models/User";
 
-const authOptions = {
+export const authOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -46,4 +46,4 @@ const authOptions = {
 
 // ✅ Fix: Do NOT export `authOptions` directly
 const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST};
