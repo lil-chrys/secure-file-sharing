@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
+import Link from "next/link";
 
-
-export default function LoginForm  () {
+export default function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -49,9 +49,15 @@ export default function LoginForm  () {
             Log In
           </button>
         </form>
+
+        {/* Sign Up Link */}
+        <p className="text-center mt-4 text-gray-600">
+          Don't have an account?{" "}
+          <Link href="/auth/signUp" className="text-blue-500 hover:underline">
+            Sign Up
+          </Link>
+        </p>
       </div>
     </div>
   );
-};
-
-
+}

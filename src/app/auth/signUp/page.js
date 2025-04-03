@@ -1,8 +1,9 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function SignupForm() {
-  const [name, setName] = useState(""); // Added name state
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,14 +14,14 @@ export default function SignupForm() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name, email, password }), // Send name to backend
+      body: JSON.stringify({ name, email, password }),
     });
     const result = await response.json();
     if (result.message === "User created") {
       alert("Signup successful! Please log in.");
       window.location.href = "/auth/signIn"; // Redirect to login page
     } else {
-      alert(result.message); // Handle errors
+      alert(result.message);
     }
   };
 
@@ -60,6 +61,14 @@ export default function SignupForm() {
             Sign Up
           </button>
         </form>
+
+        {/* Login Link */}
+        <p className="text-center mt-4 text-gray-600">
+          Already have an account?{" "}
+          <Link href="/auth/signIn" className="text-blue-500 hover:underline">
+            Log In
+          </Link>
+        </p>
       </div>
     </div>
   );

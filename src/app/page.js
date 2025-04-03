@@ -88,8 +88,7 @@ export default function Dashboard() {
         )}
       </div>
 
-      <Link href="/auth/signUp">Sign Up</Link>
-      <Link href="/auth/signIn">Sign In</Link>
+   
     </div>
   );
 }
